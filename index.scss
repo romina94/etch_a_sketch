@@ -1,0 +1,88 @@
+$dark-green: #040D12;
+$light-green: #357162;
+
+body {
+    font-family: 'Shadows Into Light', cursive;
+    background-color: $dark-green;
+    text-align: center;
+    user-select: none;
+
+    h1 {
+        color: white;
+    }
+
+    #sketch-container {
+        width: 497px;
+        margin: auto;
+
+        .sketch-row {
+            display: flex;
+            border-top: 1px solid $light-green;
+            height: 30px;
+
+            &:last-child {
+                border-bottom: 1px solid $light-green;
+            }
+
+            .sketch-cell {
+                border-left: 1px solid $light-green;
+                width: 30px;
+
+                &:last-child {
+                    border-right: 1px solid $light-green;
+                }
+            }
+        }
+    }
+
+    .settings {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin-top: 1.2em;
+
+        #color-picker {
+            background-color: transparent;
+            border: 0;
+            width: 30px;
+            height: 30px;
+        }
+    
+        button {
+            color: white;
+            background-color: transparent;
+            font-size: 1.5em;
+            font-family: 'Shadows Into Light', cursive;
+            border: 0;
+            padding: 0;
+        }
+    }
+
+    .range {
+        display: flex;
+        flex-flow: column;
+
+        #range-slider {
+            appearance: none;
+            background-color: $light-green;
+            height: 2px;
+            width: 150px;
+            margin: 25px auto 10px;
+    
+            &::-webkit-slider-thumb {
+                appearance: none;
+                background-color: white;
+                border-radius: 10px;
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+            }
+        }
+    
+        label {
+            color: white;
+            font-size: 1.5em;
+        }
+    }
+}

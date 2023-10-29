@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <title>Etch a sketch</title>
+</head>
+<body>
+    <h1>Etch a sketch</h1>
+    <div id="sketch-container"></div>
+    <div class="settings">
+        <input type="color" id="color-picker" value="#357162">
+        <button id="rainbow">Rainbow</button>
+        <button id="white">White</button>
+        <button id="eraser">Eraser</button>
+        <button id="reset">Reset</button>
+    </div>
+    <div class="range">
+        <input type="range" id="range-slider" min="1" max="100" value="16">
+        <label id="dimension">16 x 16</label>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
