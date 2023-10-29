@@ -1,4 +1,4 @@
-//rainbow, traka za povecavanje i smanjivanje
+//rainbow
 
 let activeColor = '#357162';
 let numRowCol = 16;
@@ -12,7 +12,7 @@ const rainbow = document.getElementById('rainbow');
 const white = document.getElementById('white');
 const eraser = document.getElementById('eraser');
 const reset = document.getElementById('reset');
-const rangeSlider = document.getElementById('range');
+const rangeSlider = document.getElementById('range-slider');
 const dimension = document.getElementById('dimension');
 
 colorPicker.addEventListener('change', () => {
@@ -30,10 +30,18 @@ eraser.addEventListener('click', () => {
 });
 
 reset.addEventListener('click', () => {
+    const sketchCells = document.querySelectorAll('.sketch-cell');
+
     sketchCells.forEach((cell) => {
         cell.removeAttribute("style");
     });
     setActiveColor('#357162');
+});
+
+rangeSlider.addEventListener('change', (e) => {
+    dimension.textContent = e.target.value + " x " + e.target.value;
+    numRowCol = e.target.value;
+    createSketchContainer(numRowCol);
 });
 
 function setActiveColor(color) {
@@ -41,17 +49,18 @@ function setActiveColor(color) {
 }
 
 function createSketchContainer(numRowCol) {
-    for (row = 0; row < numRowCol; row++) {
-        const sketchRow = document.createElement('div');
-        sketchRow.classList.add("sketch-row");
-    
-        for (cell = 0; cell < numRowCol; cell++) {
-            const sketchCell = document.createElement('div');
-            sketchCell.classList.add("sketch-cell");
-            sketchRow.appendChild(sketchCell);
-        }
-    
-        sketchContainer.appendChild(sketchRow);
+    while (sketchContainer.hasChildNodes()) {
+        sketchContainer.removeChild(sketchContainer.firstChild);
+    }
+
+    sketchContainer.style.gridTemplateColumns = 'repeat(' + numRowCol + ', auto)';
+
+    const numCells = numRowCol * numRowCol;
+
+    for (cell = 0; cell < numCells; cell++) {
+        const sketchCell = document.createElement('div');
+        sketchCell.classList.add("sketch-cell");
+        sketchContainer.appendChild(sketchCell);
     }
     
     const sketchCells = document.querySelectorAll('.sketch-cell');

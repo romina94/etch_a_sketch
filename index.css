@@ -2,6 +2,7 @@ body {
   font-family: "Shadows Into Light", cursive;
   background-color: #040D12;
   text-align: center;
+  margin: 0;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -10,23 +11,22 @@ body h1 {
   color: white;
 }
 body #sketch-container {
-  width: 497px;
+  background-color: #357162;
+  display: grid;
+  grid-gap: 1px;
+  border: 1px solid #357162;
+  width: 500px;
+  height: 500px;
   margin: auto;
 }
-body #sketch-container .sketch-row {
-  display: flex;
-  border-top: 1px solid #357162;
-  height: 30px;
+@media (max-width: 767px) {
+  body #sketch-container {
+    width: 350px;
+    height: 350px;
+  }
 }
-body #sketch-container .sketch-row:last-child {
-  border-bottom: 1px solid #357162;
-}
-body #sketch-container .sketch-row .sketch-cell {
-  border-left: 1px solid #357162;
-  width: 30px;
-}
-body #sketch-container .sketch-row .sketch-cell:last-child {
-  border-right: 1px solid #357162;
+body #sketch-container .sketch-cell {
+  background-color: #040D12;
 }
 body .settings {
   display: flex;

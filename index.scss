@@ -5,6 +5,7 @@ body {
     font-family: 'Shadows Into Light', cursive;
     background-color: $dark-green;
     text-align: center;
+    margin: 0;
     user-select: none;
 
     h1 {
@@ -12,26 +13,21 @@ body {
     }
 
     #sketch-container {
-        width: 497px;
+        background-color: $light-green;
+        display: grid;
+        grid-gap: 1px;
+        border: 1px solid $light-green;
+        width: 500px;
+        height: 500px;
         margin: auto;
 
-        .sketch-row {
-            display: flex;
-            border-top: 1px solid $light-green;
-            height: 30px;
+        @media (max-width: 767px) {
+            width: 350px;
+            height: 350px;
+        }
 
-            &:last-child {
-                border-bottom: 1px solid $light-green;
-            }
-
-            .sketch-cell {
-                border-left: 1px solid $light-green;
-                width: 30px;
-
-                &:last-child {
-                    border-right: 1px solid $light-green;
-                }
-            }
+        .sketch-cell {
+            background-color: $dark-green;
         }
     }
 
