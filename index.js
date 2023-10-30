@@ -1,10 +1,7 @@
-//rainbow
-
-let activeColor = '#357162';
+let activeMode = 'default';
+let colorPickerColor = 'white';
 let numRowCol = 16;
 let mouseDown = false;
-document.body.onmousedown = () => (mouseDown = true);
-document.body.onmouseup = () => (mouseDown = false);
 
 const sketchContainer = document.getElementById('sketch-container');
 const colorPicker = document.getElementById('color-picker');
@@ -15,18 +12,24 @@ const reset = document.getElementById('reset');
 const rangeSlider = document.getElementById('range-slider');
 const dimension = document.getElementById('dimension');
 
+document.body.onmousedown = () => (mouseDown = true);
+document.body.onmouseup = () => (mouseDown = false);
+
 colorPicker.addEventListener('change', () => {
-    setActiveColor(colorPicker.value);
+    activeMode = 'colorPicker';
+    colorPickerColor = colorPicker.value;
 });
 
-rainbow.addEventListener('click', setActiveColor);
+rainbow.addEventListener('click', () => {
+    activeMode = 'rainbow';
+});
 
 white.addEventListener('click', () => {
-    setActiveColor('white');
+    activeMode = 'white';
 });
 
 eraser.addEventListener('click', () => {
-    setActiveColor('#040D12');
+    activeMode = 'eraser';
 });
 
 reset.addEventListener('click', () => {
@@ -35,7 +38,9 @@ reset.addEventListener('click', () => {
     sketchCells.forEach((cell) => {
         cell.removeAttribute("style");
     });
-    setActiveColor('#357162');
+
+    activeMode = 'default';
+    setActiveColor(activeMode);
 });
 
 rangeSlider.addEventListener('change', (e) => {
@@ -43,10 +48,6 @@ rangeSlider.addEventListener('change', (e) => {
     numRowCol = e.target.value;
     createSketchContainer(numRowCol);
 });
-
-function setActiveColor(color) {
-    activeColor = color;
-}
 
 function createSketchContainer(numRowCol) {
     while (sketchContainer.hasChildNodes()) {
@@ -71,9 +72,27 @@ function createSketchContainer(numRowCol) {
     
         function paint(event) {
             if (event.type == 'mouseover' && !mouseDown) return;
-            event.target.style.backgroundColor = activeColor;
+            event.target.style.backgroundColor = setActiveColor(activeMode);
         }
     });
+}
+
+function setActiveColor(activeMode) {
+    switch (activeMode) {
+        case 'colorPicker':
+            return colorPickerColor;
+        case 'rainbow':
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+            return `rgb(${r}, ${g}, ${b})`;
+        case 'white':
+            return 'white';
+        case 'eraser':
+            return '#040D12';
+        default:
+            return '#357162';
+    }
 }
 
 createSketchContainer(numRowCol);
